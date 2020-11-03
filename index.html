@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
     <meta name="viewport" content="width=device-width">
@@ -149,7 +148,11 @@
                     CART.contents = JSON.parse(_contents);
                 }else{
                     //dummy test data
-                    CART.contents = [];
+                    CART.contents = [
+                        {id:1, title:'Apple', qty:5, itemPrice: 0.85},
+                        {id:2, title:'Banana', qty:3, itemPrice: 0.35},
+                        {id:3, title:'Cherry', qty:8, itemPrice: 0.05}
+                    ];
                     CART.sync();
                 }
             },
@@ -311,13 +314,10 @@
             ev.preventDefault();
             let id = parseInt(ev.target.getAttribute('data-id'));
             CART.increase(id, 1);
-            
             let controls = ev.target.parentElement;
             let qty = controls.querySelector('span:nth-child(2)');
-            let price = controls.querySelector('price:nth-child(3)');
             let item = CART.find(id);
             if(item){
-                price.textContent=new Intl.NumberFormat('en-CA',{style: 'currency', currency:'CAD'}).format(item.qty * item.itemPrice);
                 qty.textContent = item.qty;
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
@@ -330,10 +330,8 @@
             CART.reduce(id, 1);
             let controls = ev.target.parentElement;
             let qty = controls.querySelector('span:nth-child(2)');
-            let price = controls.querySelector('price:nth-child(3)');
             let item = CART.find(id);
             if(item){
-                 price.textContent=new Intl.NumberFormat('en-CA',{style: 'currency', currency:'CAD'}).format(item.qty * item.itemPrice);
                 qty.textContent = item.qty;
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
@@ -411,3 +409,4 @@
     </script>
 </body>
 </html>
+ 
