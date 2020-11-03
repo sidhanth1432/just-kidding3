@@ -302,6 +302,15 @@
                 
                 let price = document.createElement('div');
                 price.className = 'price';
+                
+                
+                CART.contents = CART.contents.map(item2=>{
+                    if(item2.id === item.id)
+                        item.qty = item2.qty
+                    
+                });
+                
+                
                 let cost = new Intl.NumberFormat('en-CA', 
                                 {style: 'currency', currency:'CAD'}).format(item.qty * item.itemPrice);
                 price.textContent = cost;
@@ -323,7 +332,7 @@
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
             }
-            showCart();
+            
             
         }
         
@@ -339,7 +348,7 @@
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
             }
-            showCart();
+            
             
         }
         
