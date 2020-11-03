@@ -301,7 +301,7 @@
                 
                 CART.contents = CART.contents.map(orig=>{
                     if(orig.id === item.id)
-                        item.qty = orig.qty;
+                        item.qty = parseInt(orig.qty);
                     
                 });
                 
