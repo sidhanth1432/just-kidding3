@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="1">
+    
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
     <meta name="viewport" content="width=device-width">
@@ -298,21 +298,6 @@
                 
                 let price = document.createElement('div');
                 price.className = 'price';
-                
-                CART.contents = CART.contents.map(orig=>{
-                    if(orig.id === item.id)
-                        item.qty = parseInt(orig.qty);
-                    
-                });
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 let cost = new Intl.NumberFormat('en-CA', 
                                 {style: 'currency', currency:'CAD'}).format(item.qty * item.itemPrice);
                 price.textContent = cost;
@@ -326,10 +311,13 @@
             ev.preventDefault();
             let id = parseInt(ev.target.getAttribute('data-id'));
             CART.increase(id, 1);
+            
             let controls = ev.target.parentElement;
             let qty = controls.querySelector('span:nth-child(2)');
+            let price = controls.querySelector('price:nth-child(3)');
             let item = CART.find(id);
             if(item){
+                price.textContent=new Intl.NumberFormat('en-CA',{style: 'currency', currency:'CAD'}).format(item.qty * item.itemPrice);
                 qty.textContent = item.qty;
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
@@ -342,8 +330,10 @@
             CART.reduce(id, 1);
             let controls = ev.target.parentElement;
             let qty = controls.querySelector('span:nth-child(2)');
+            let price = controls.querySelector('price:nth-child(3)');
             let item = CART.find(id);
             if(item){
+                 price.textContent=new Intl.NumberFormat('en-CA',{style: 'currency', currency:'CAD'}).format(item.qty * item.itemPrice);
                 qty.textContent = item.qty;
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
@@ -352,7 +342,7 @@
         
         function getProducts(success, failure){
             //request the list of products from the "server"
-            const URL = "https://github.com/sidhanth1432/just-kidding3/blob/main/products.json";
+            const URL = "https://prof3ssorst3v3.github.io/media-sample-files/products.json?";
             fetch(URL, {
                 method: 'GET',
                 mode: 'cors'
@@ -367,19 +357,17 @@
         function showProducts( products ){
             PRODUCTS = products;
             //take data.products and display inside <section id="products">
-            let imgPath = 'https://github.com/prof3ssorSt3v3/media-sample-files';
+            let imgPath = '../video-pages/img/';
             let productSection = document.getElementById('products');
             productSection.innerHTML = "";
             products.forEach(product=>{
                 let card = document.createElement('div');
                 card.className = 'card';
                 //add the image to the card
-               let img = document.createElement('img');
+                let img = document.createElement('img');
                 img.alt = product.title;
                 img.src = imgPath + product.img;
                 card.appendChild(img);
-                
-                
                 //add the price
                 let price = document.createElement('p');
                 let cost = new Intl.NumberFormat('en-CA', 
