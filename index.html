@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="1">
+    
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
     <meta name="viewport" content="width=device-width">
@@ -288,7 +288,7 @@
                 plus.textContent = '+';
                 plus.setAttribute('data-id', item.id)
                 controls.appendChild(plus);
-                item.qty=plus.addEventListener('click', incrementCart);
+                plus.addEventListener('click', item.qty=incrementCart);
                 
                 let qty = document.createElement('span');
                 qty.textContent = item.qty;
@@ -298,7 +298,7 @@
                 minus.textContent = '-';
                 minus.setAttribute('data-id', item.id)
                 controls.appendChild(minus);
-                item.qty=minus.addEventListener('click', decrementCart);
+                minus.addEventListener('click', item.qty=decrementCart);
                 
                 let price = document.createElement('div');
                 price.className = 'price';
