@@ -288,7 +288,7 @@
                 plus.textContent = '+';
                 plus.setAttribute('data-id', item.id)
                 controls.appendChild(plus);
-                plus.addEventListener('click', item.qty=parseInt(incrementCart));
+                plus.addEventListener('click', incrementCart);
                 
                 let qty = document.createElement('span');
                 qty.textContent = item.qty;
@@ -298,7 +298,7 @@
                 minus.textContent = '-';
                 minus.setAttribute('data-id', item.id)
                 controls.appendChild(minus);
-                minus.addEventListener('click', item.qty=parseInt(decrementCart));
+                minus.addEventListener('click', decrementCart);
                 
                 let price = document.createElement('div');
                 price.className = 'price';
@@ -323,7 +323,8 @@
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
             }
-            return item.qty;
+            showCart();
+            
         }
         
         function decrementCart(ev){
@@ -338,7 +339,8 @@
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
             }
-            return item.qty;
+            showCart();
+            
         }
         
         function getProducts(success, failure){
