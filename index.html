@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <meta http-equiv="refresh" content="1">
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
     <meta name="viewport" content="width=device-width">
@@ -149,11 +149,7 @@
                     CART.contents = JSON.parse(_contents);
                 }else{
                     //dummy test data
-                    CART.contents = [
-                        {id:1, title:'Apple', qty:5, itemPrice: 0.85},
-                        {id:2, title:'Banana', qty:3, itemPrice: 0.35},
-                        {id:3, title:'Cherry', qty:8, itemPrice: 0.05}
-                    ];
+                    CART.contents = [];
                     CART.sync();
                 }
             },
@@ -288,7 +284,7 @@
                 plus.textContent = '+';
                 plus.setAttribute('data-id', item.id)
                 controls.appendChild(plus);
-                plus.addEventListener('click', incrementCart);
+                plus.addEventListener('click', incrementCart)
                 
                 let qty = document.createElement('span');
                 qty.textContent = item.qty;
@@ -298,17 +294,23 @@
                 minus.textContent = '-';
                 minus.setAttribute('data-id', item.id)
                 controls.appendChild(minus);
-                minus.addEventListener('click', decrementCart);
+                minus.addEventListener('click', decrementCart)
                 
                 let price = document.createElement('div');
                 price.className = 'price';
                 
-                
-                CART.contents = CART.contents.map(item2=>{
-                    if(item2.id === item.id)
-                        item.qty = item2.qty
+                CART.contents = CART.contents.map(orig=>{
+                    if(orig.id === item.id)
+                        item.qty = orig.qty;
                     
                 });
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 let cost = new Intl.NumberFormat('en-CA', 
@@ -332,8 +334,6 @@
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
             }
-            
-            
         }
         
         function decrementCart(ev){
@@ -348,8 +348,6 @@
             }else{
                 document.getElementById('cart').removeChild(controls.parentElement);
             }
-            
-            
         }
         
         function getProducts(success, failure){
