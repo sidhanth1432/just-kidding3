@@ -352,7 +352,7 @@
         
         function getProducts(success, failure){
             //request the list of products from the "server"
-            const URL = "https://prof3ssorst3v3.github.io/media-sample-files/products.json?";
+            const URL = "https://github.com/sidhanth1432/just-kidding3/blob/main/products.json";
             fetch(URL, {
                 method: 'GET',
                 mode: 'cors'
@@ -367,17 +367,19 @@
         function showProducts( products ){
             PRODUCTS = products;
             //take data.products and display inside <section id="products">
-            let imgPath = '../video-pages/img/';
+           /* let imgPath = '../video-pages/img/';*/
             let productSection = document.getElementById('products');
             productSection.innerHTML = "";
             products.forEach(product=>{
                 let card = document.createElement('div');
                 card.className = 'card';
                 //add the image to the card
-                let img = document.createElement('img');
+               /* let img = document.createElement('img');
                 img.alt = product.title;
                 img.src = imgPath + product.img;
                 card.appendChild(img);
+                
+                */
                 //add the price
                 let price = document.createElement('p');
                 let cost = new Intl.NumberFormat('en-CA', 
